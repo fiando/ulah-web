@@ -24,7 +24,7 @@
           @endif
           <ul class="list-unstyled">
             @foreach ($tagihan as $key => $v)
-              <li><b>{{$v->tgl_bayar}}</b> - NIS {{$v->nis}} - <i>{{$v->nama_pembayaran}}</i> - Rp{{number_format($v->nominal,0,'','.')}}<li>
+              <li><b>{{date("d-m-Y", strtotime($v->tgl_tagihan))}}</b> - NIS {{$v->nis}} - <i>{{$v->nama_pembayaran}}</i> - Rp{{number_format($v->nominal,0,'','.')}}<li>
             @endforeach
           </ul>
           <a href="{{url("admin/tagihan")}}" class="btn btn-primary btn-block">Periksa Semua Tagihan</a>
@@ -37,7 +37,7 @@
         <div class="content">
           <ul class="list-unstyled">
             @foreach ($pembayaran as $key => $v)
-              <li><b>{{$v->tgl_bayar}}</b> - NIS {{$v->nis}} - <i>{{$v->nama_pembayaran}}</i> - Rp{{number_format($v->nominal,0,'','.')}}<li>
+              <li><b>{{date("d-m-Y", strtotime($v->tgl_bayar))}}</b> - NIS {{$v->nis}} - <i>{{$v->nama_pembayaran}}</i> - Rp{{number_format($v->nominal,0,'','.')}}<li>
             @endforeach
           </ul>
           <a href="{{url("admin/pembayaran")}}" class="btn btn-info btn-block">Periksa Semua Pembayaran</a>

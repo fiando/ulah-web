@@ -35,7 +35,7 @@
                      <td>
                        Belum Lunas
                        <form class="" action="{{url("")}}" method="post">
-                         <button type="submit" name="notif" class="btn btn-xs btn-info btn-fill">Kirim Notifikasi</button>
+                         <button type="button" disabled name="notif" class="disabled btn btn-xs btn-info btn-fill">Kirim Notifikasi</button>
                          <input type="hidden" name="nis" value="{{$v->nis}}">
                        </form>
                      </td>

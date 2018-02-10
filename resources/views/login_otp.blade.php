@@ -37,11 +37,11 @@
 
 
 					<div class="wrap-input100 validate-input">
-						<input class="input100 disabled" type="text" name="email" placeholder="Username" value="demo" disabled>
+						<input class="input100 disabled" type="text" name="email" placeholder="Username_demo" value="username" disabled>
 					</div>
 
 					<div class="wrap-input100 rs1 validate-input">
-						<input class="input100 disabled" type="password" name="pass" placeholder="Password" value="demo" disabled>
+						<input class="input100 disabled" type="text" name="pass" placeholder="Password" value="0333" disabled>
 					</div>
 
 					<div class="container-login100-form-btn m-t-20">
@@ -51,8 +51,8 @@
 					</div>
 
 					<div class="text-center p-t-45 p-b-4">
-						<a href="{{url("masuk_otp")}}" class="txt2 hov1">
-							Login dengan OTP
+						<a href="{{url("masuk")}}" class="txt2 hov1">
+							Login dengan password
 						</a>
 					</div>
 				</form>

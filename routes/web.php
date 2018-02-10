@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/masuk', 'UserController@login');
+Route::get('/masuk_otp', 'UserController@login_otp');
 Route::post('/masuk', 'UserController@proses_login');
 Route::get('/keluar', 'UserController@logout');
 ;

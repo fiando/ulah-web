@@ -31,7 +31,6 @@
             <li><a href="{{url("siswa/orang-tua")}}">Profil Orang Tua</a></li>
             <li class="divider"></li>
             <li><a href="{{url("tentang-aplikasi")}}">Tentang Aplikasi</a></li>
-            <li><a href="{{url("cara-penggunaan")}}">Cara Penggunaan</a></li>
           </ul>
         </li>
         <li>

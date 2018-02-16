@@ -16,13 +16,13 @@
     </li>
     <li class="{{(url("siswa/orang-tua") == url()->current()) ? 'active' : '' }}">
       <a href="{{url("siswa/orang-tua")}}">
-        <i class="pe-7s-graph"></i>
+        <i class="pe-7s-user"></i>
         <p>Profil Orang Tua</p>
       </a>
     </li>
     <li class="{{(url("siswa/identitas-sekolah") == url()->current()) ? 'active' : '' }}">
       <a href="{{url("identitas-sekolah")}}">
-        <i class="pe-7s-graph"></i>
+        <i class="pe-7s-id"></i>
         <p>Identitas Sekolah</p>
       </a>
     </li>
@@ -31,13 +31,13 @@
     </li>
     <li class="{{(url("siswa/tagihan") == url()->current()) ? 'active' : '' }}">
       <a href="{{url("siswa/tagihan")}}">
-        <i class="pe-7s-graph"></i>
+        <i class="pe-7s-note2"></i>
         <p>Tagihan</p>
       </a>
     </li>
     <li class="{{(url("siswa/pembayaran") == url()->current()) ? 'active' : '' }}">
       <a href="{{url("siswa/pembayaran")}}">
-        <i class="pe-7s-graph"></i>
+        <i class="pe-7s-cash"></i>
         <p>Pembayaran</p>
       </a>
     </li>
@@ -46,7 +46,7 @@
     </li>
     <li class="{{(url("siswa/akun") == url()->current()) ? 'active' : '' }}">
       <a href="{{url("siswa/akun")}}">
-        <i class="pe-7s-graph"></i>
+        <i class="pe-7s-config"></i>
         <p>Pengaturan Akun</p>
       </a>
     </li>

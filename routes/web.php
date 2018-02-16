@@ -18,12 +18,12 @@ Route::get('/', function () {
 Route::get('/masuk', 'UserController@login');
 Route::get('/masuk_otp', 'UserController@login_otp');
 Route::post('/masuk', 'UserController@proses_login');
-Route::get('/keluar', 'UserController@logout');
+Route::get('/keluar', 'UserController@logout')->middleware('cek');
 ;
-Route::get('/identitas-sekolah', 'IdentitasSekolahController@index');
-Route::get('/tentang-aplikasi', 'TentangAplikasiController@index');
+Route::get('/identitas-sekolah', 'IdentitasSekolahController@index')->middleware('cek');
+Route::get('/tentang-aplikasi', 'TentangAplikasiController@index')->middleware('cek');
 
-Route::prefix('siswa')->group(function () {
+Route::prefix('siswa')->middleware('cek.siswa')->group(function () {
   Route::get('/', 'SiswaController@index');
   Route::get('/tagihan', 'TagihanSiswaController@index');
   Route::post('/pembayaran_tagihan', 'TagihanSiswaController@bayar_tagihan');
@@ -33,7 +33,7 @@ Route::prefix('siswa')->group(function () {
 });
 
 //demo orang tua sama seperti siswa
-Route::prefix('ortu')->group(function () {
+Route::prefix('ortu')->middleware('cek')->group(function () {
   Route::get('/', 'SiswaController@index');
   Route::get('/tagihan', 'TagihanSiswaController@index');
   Route::post('/pembayaran_tagihan', 'TagihanSiswaController@bayar_tagihan');
@@ -42,7 +42,7 @@ Route::prefix('ortu')->group(function () {
   Route::get('/akun', 'SiswaController@akun');
 });
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('cek.admin')->group(function () {
   Route::get('/', 'Admin\AdminController@index');
 
   Route::resources([
@@ -56,11 +56,11 @@ Route::prefix('admin')->group(function () {
       'orang-tua' => 'Admin\OrangTuaController',
   ]);
 
-  Route::get('/identitas-sekolah/edit', 'IdentitasSekolahController@edit');
-  Route::get('/tagihan', 'Admin\TagihanController@index');
-  Route::post('/tagihan', 'Admin\TagihanController@store');
-  Route::get('/tagihan/tambah', 'Admin\TagihanController@tambah');
-  Route::get('/pembayaran', 'Admin\PembayaranController@index');
+  Route::get('/identitas-sekolah/edit', 'IdentitasSekolahController@edit')->middleware('cek');
+  Route::get('/tagihan', 'Admin\TagihanController@index')->middleware('cek');
+  Route::post('/tagihan', 'Admin\TagihanController@store')->middleware('cek');
+  Route::get('/tagihan/tambah', 'Admin\TagihanController@tambah')->middleware('cek');
+  Route::get('/pembayaran', 'Admin\PembayaranController@index')->middleware('cek');
 });
 
 // Auth::routes();

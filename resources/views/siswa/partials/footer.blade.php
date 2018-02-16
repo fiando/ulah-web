@@ -7,11 +7,6 @@
             Tentang Aplikasi
           </a>
         </li>
-        <li>
-          <a href="{{url("cara-penggunaan")}}">
-            Cara Penggunaan
-          </a>
-        </li>
       </ul>
     </nav>
     <p class="copyright pull-right">

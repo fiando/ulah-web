@@ -16,7 +16,7 @@ class TagihanController extends Controller
     ->join('tahun_pelajaran', 'pembayaran.idtahun_pelajaran', '=', 'tahun_pelajaran.idtahun_pelajaran')
     ->join('siswa', 'pembayaran.nis', '=', 'siswa.nis')
     ->join('users', 'siswa.idusers', '=', 'users.idusers')
-    ->select('pembayaran.*', 'jenis_pembayaran.nama_pembayaran', 'jenis_pembayaran.nominal', 'tahun_pelajaran.tahun_pelajaran', 'users.nama')
+    ->select('users.*','pembayaran.*', 'jenis_pembayaran.nama_pembayaran', 'jenis_pembayaran.nominal', 'tahun_pelajaran.tahun_pelajaran')
     ->where('pembayaran.status', 'lunas')
     ->get();
 
@@ -53,8 +53,20 @@ class TagihanController extends Controller
 
     return redirect()->route('jenis-pembayaran.create')->with('success','Berhasil Menambahkan Jenis Pembayaran ' . $request->jenis_pembayaran );
   }
-  public function notifikasi_tagihan() {
+
+  public function notifikasi_tagihan(Request $request) {
     $curl = curl_init();
+
+    $nama = $request->nama;
+    $nis = $request->nis;
+    $nama_pembayaran = $request->nama_pembayaran;
+    $tgl_tagihan = $request->tgl_tagihan;
+    $nominal = number_format($request->nominal,0,0,'.');
+
+    $no_telp = $request->no_telp;
+    $no_telp = '085743411430';
+    $pesan = "Nama siswa : $nama ( $nis ) \n\nAda Tagihan \"$nama_pembayaran\" sebesar Rp.$nominal yang belum terbayar, silahkan periksa tagihan.\n\nTanggal tagihan : $tgl_tagihan\n";
+    $sms_token = get_token();
 
     curl_setopt_array($curl, array(
       CURLOPT_URL => "https://api.mainapi.net/smsnotification/1.0.0/messages",
@@ -64,11 +76,11 @@ class TagihanController extends Controller
       CURLOPT_TIMEOUT => 30,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => "POST",
-      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"msisdn\"\r\n\r\n085743411430\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"content\"\r\n\r\ntest\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"msisdn\"\r\n\r\n$no_telp\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"content\"\r\n\r\n$pesan\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
       CURLOPT_HTTPHEADER => array(
-        "Authorization: Bearer cff1fc047115343ca8a7530fda13600b",
+        "Authorization: Bearer $sms_token",
         "Cache-Control: no-cache",
-        "Postman-Token: b8737ea4-6ab5-f67f-4467-8541dd6bb4a8",
+        // "Postman-Token: a995b9af-0875-77c2-06ee-84575edb78f5",
         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
       ),
     ));
@@ -79,9 +91,13 @@ class TagihanController extends Controller
     curl_close($curl);
 
     if ($err) {
-      echo "cURL Error #:" . $err;
+      // echo "cURL Error #:" . $err;
+      $request->session()->flash('pesan_flash', $err);
+      return redirect('admin/tagihan/');
     } else {
-      echo $response;
+      // echo $response;
+      $request->session()->flash('pesan_flash', $response);
+      return redirect('admin/tagihan/');
     }
   }
 }

@@ -20,41 +20,25 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-				<form class="login100-form validate-form" method="post" action="{{url("masuk")}}">
+				<form class="login100-form validate-form" method="post" action="{{url("verifikasi_otp")}}">
 					{{ csrf_field() }}
 					<span class="login100-form-title p-b-33">
-						Login Akun
+						Verifikasi OTP
+						<br><br>
+						<p>Silahkan masukkan kode verifikasi yang sudah dikirimkan ke nomor HP</p>
 					</span>
 
-					<div class="wrap-input100 rs1 validate-input">
-						<select class="input100 form-control" name="level">
-							<option value="admin">Admin ( Demo )</option>
-							<option value="siswa">Siswa / Orang Tua ( Demo )</option>
-						</select>
-					</div>
-
-					<br>
-
-
-					<div class="wrap-input100 validate-input">
-						<input class="input100 disabled" type="text" name="email" placeholder="Username_demo" value="username" disabled>
-					</div>
 
 					<div class="wrap-input100 rs1 validate-input">
-						<input class="input100 disabled" type="text" name="pass" placeholder="Password" value="0333" disabled>
+						<input class="input100" type="text" name="otpstr" placeholder="Kode OTP" value="">
 					</div>
 
 					<div class="container-login100-form-btn m-t-20">
 						<button class="login100-form-btn" type="submit">
-							Sign in
+							Lanjut
 						</button>
 					</div>
 
-					<div class="text-center p-t-45 p-b-4">
-						<a href="{{url("masuk")}}" class="txt2 hov1">
-							Login dengan password
-						</a>
-					</div>
 				</form>
 			</div>
 		</div>

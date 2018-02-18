@@ -74,7 +74,7 @@
         <div class="card">
           <div cass="content">
             <div class="author text-center">
-                <h4 class="title">{{$siswa->nama
+                <h4 class="title">{{$siswa->nama}}
                 <br />
                   <small>{{$siswa->username}} ( {{$siswa->username}} )</small>
                 </h4>

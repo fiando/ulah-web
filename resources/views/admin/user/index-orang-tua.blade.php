@@ -1,12 +1,12 @@
 @extends('admin/master')
 
-@section('title','Siswa')
-@section('desc','Manajemen Siswa')
+@section('title','Orang Tua')
+@section('desc','Manajemen Orang Tua')
 
 @section('content')
 
   <div class="col-md-12">
-    <a class="btn btn-success btn-fill disabled" href="#">Tambah Siswa</a>
+    <a class="btn btn-success btn-fill disabled" href="#">Tambah Orang Tua</a>
   </div>
 
   <div class="col-md-12">

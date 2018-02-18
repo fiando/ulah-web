@@ -6,7 +6,11 @@
 @section('content')
   <div class="row">
     <div class="col-md-8">
-
+      @if (session('pesan_flash'))
+        <div class="alert alert-info">
+          <span>{{session('pesan_flash')}}</span>
+        </div>
+      @endif
       <div class="card">
         <div class="header">
           <a href="{{url("admin/tagihan/tambah")}}" class="btn btn-success btn-block btn-fill">Tambah Tagihan</a>
@@ -29,14 +33,20 @@
                    <tr>
                      <td><a href="#">{{$v->nama}}</a> </td>
                      <td>{{$v->nama_pembayaran}}</td>
-                     <td>{{$v->nominal}}</td>
+                     <td>Rp{{number_format($v->nominal,0,0,'.')}}</td>
                      <td>{{$v->tgl_tagihan}}</td>
                      <td>{{$v->tahun_pelajaran}}</td>
                      <td>
                        Belum Lunas
-                       <form class="" action="{{url("")}}" method="post">
-                         <button type="button" disabled name="notif" class="disabled btn btn-xs btn-info btn-fill">Kirim Notifikasi</button>
+                       <form class="" action="{{url("admin/tagihan/kirim-notif")}}" method="post">
+                         <button type="submit" name="notif" class="btn btn-xs btn-info btn-fill">Kirim Notifikasi</button>
+                         <input type="hidden" name="nama" value="{{$v->nama}}">
                          <input type="hidden" name="nis" value="{{$v->nis}}">
+                         <input type="hidden" name="nomor" value="{{$v->no_telp}}">
+                         <input type="hidden" name="nama_pembayaran" value="{{$v->nama_pembayaran}}">
+                         <input type="hidden" name="nominal" value="{{$v->nominal}}">
+                         <input type="hidden" name="tgl_tagihan" value="{{$v->tgl_tagihan}}">
+                         {{ csrf_field() }}
                        </form>
                      </td>
                    </tr>
@@ -105,7 +115,7 @@
   <script type="text/javascript">
   $(document).ready( function () {
     $('#tagihan').DataTable( {
-      "order": [[ 2, "asc" ]]
+      "order": [[ 3, "desc" ]]
   });
   } );
   </script>

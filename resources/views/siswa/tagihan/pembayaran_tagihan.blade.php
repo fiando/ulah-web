@@ -19,11 +19,17 @@
                 <div class="thumbnail">
                   <img class="img-responsive" src="{{asset('img/finpay.jpg')}}" alt="...">
                   <div class="caption">
-                    <form action="{{url('siswa/pembayaran_tagihan')}}" method="post">
+                    <form action="{{url('siswa/pembayaran_tagihan/finpaycc')}}" method="post">
                       <input type="hidden" name="id_tagihan" value="{{$tagihan->idpembayaran}}">
+                      <input type="hidden" name="nama" value="{{$tagihan->nama}}">
+                      <input type="hidden" name="nis" value="{{$tagihan->nis}}">
+                      <input type="hidden" name="nomor" value="{{$tagihan->no_telp}}">
+                      <input type="hidden" name="nama_pembayaran" value="{{$tagihan->nama_pembayaran}}">
+                      <input type="hidden" name="nominal" value="{{$tagihan->nominal}}">
+                      <input type="hidden" name="tgl_tagihan" value="{{$tagihan->tgl_tagihan}}">
                       <button type="submit" name="bayar" class="btn btn-primary btn-block">Lanjutkan</button>
                       {{ csrf_field() }}
-                    </form>``
+                    </form>
                   </div>
                 </div>
               </div>

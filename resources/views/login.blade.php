@@ -35,7 +35,6 @@
 
 					<br>
 
-
 					<div class="wrap-input100 validate-input">
 						<input class="input100 disabled" type="text" name="email" placeholder="Username" value="demo" disabled>
 					</div>
@@ -48,12 +47,6 @@
 						<button class="login100-form-btn" type="submit">
 							Sign in
 						</button>
-					</div>
-
-					<div class="text-center p-t-45 p-b-4">
-						<a href="{{url("masuk_otp")}}" class="txt2 hov1">
-							Login dengan OTP
-						</a>
 					</div>
 				</form>
 			</div>

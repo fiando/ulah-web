@@ -15,12 +15,8 @@
               <b class="text-left">{{$v->nama_pembayaran}}</b>
               <b class="text-left">[ <i>{{date("d-m-Y", strtotime($v->tgl_tagihan))}}</i> ]</b>
               <br>
-              Nominal : Rp{{number_format($v->nominal,0,0,'.')}}
-              <form action="{{url('siswa/pembayaran_tagihan')}}" method="post">
-                <button type="submit" name="bayar" class="btn btn-primary btn-fill btn-sm">Bayar</button>
-                <input type="hidden" name="id_tagihan" value="{{$v->idpembayaran}}">
-                {{ csrf_field() }}
-              </form>
+              Nominal : Rp{{number_format($v->nominal,0,0,'.')}}<br />
+              <a href="{{url('siswa/pembayaran_tagihan/')}}?id_tagihan={{$v->idpembayaran}}" class="btn btn-primary btn-fill btn-sm" target="_blank">Bayar</a>
             </li>
           @endforeach
         </ul>

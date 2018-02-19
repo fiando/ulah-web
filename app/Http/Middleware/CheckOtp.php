@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\User;
 
-class CheckSession
+class CheckOtp
 {
     /**
      * Handle an incoming request.
@@ -15,9 +16,14 @@ class CheckSession
      */
     public function handle($request, Closure $next)
     {
-      $session = $request->session()->get('level');
-      if (!isset($session)) {
-        return redirect('login');
+      $user = \App\User::where('status','aktif')->find(session('id'));
+      // dd($user->otp);
+      $otp = $user->otp;
+      if ($otp == 1) {
+        $otp_valid = $request->session()->get('otp_valid');
+        if ($otp_valid != true) {
+          return redirect('masuk_otp');
+        }
       }
         return $next($request);
     }

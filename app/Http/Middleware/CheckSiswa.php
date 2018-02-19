@@ -16,9 +16,9 @@ class CheckSiswa
     public function handle($request, Closure $next)
     {
       $session = $request->session()->get('level');
-      if ($session == 'siswa') {
+      if ($session == 'siswa' || $session == 'orang_tua') {
         return $next($request);
       }
-      return redirect('masuk');
+      return redirect('login');
     }
 }

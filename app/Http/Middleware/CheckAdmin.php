@@ -19,6 +19,6 @@ class CheckAdmin
       if ($session == 'admin') {
         return $next($request);
       }
-      return redirect('masuk');
+      return redirect('login');
     }
 }

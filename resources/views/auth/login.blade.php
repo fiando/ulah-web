@@ -1,69 +1,56 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>ULAH LOGIN</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="{{url("img/logo.png")}}"/>
+	<link rel="stylesheet" type="text/css" href="{{url("/login_assets/vendor/bootstrap/css/bootstrap.min.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{url("/login_assets/css/util.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{url("/login_assets/css/main.css")}}">
+	<style media="screen">
+		.input100.disabled {
+			background: #b9b9b9 !important;
+		  cursor: not-allowed;
+		}
+	</style>
+</head>
+<body>
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+				<form class="login100-form validate-form" method="post" action="{{ route('login') }}">
+					{{ csrf_field() }}
+					<span class="login100-form-title p-b-33">
+						Login Akun
+					</span>
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('masuk') }}">
-                        {{ csrf_field() }}
+					<div class="wrap-input100 rs1 validate-input">
+						<select class="input100 form-control" name="level">
+							<option value="admin">Admin ( Demo )</option>
+							<option value="siswa">Siswa / Orang Tua ( Demo )</option>
+						</select>
+					</div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+					<br>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+					<div class="wrap-input100 validate-input">
+						<input class="input100 disabled" type="text" name="email" placeholder="Username" value="{{ old('email') }}" disabled>
+					</div>
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+					<div class="wrap-input100 rs1 validate-input">
+						<input class="input100 disabled" type="password" name="pass" placeholder="Password" value="demo" disabled>
+					</div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+					<div class="container-login100-form-btn m-t-20">
+						<button class="login100-form-btn" type="submit">
+							Sign in
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -12,20 +12,21 @@
 */
 
 Route::get('/', function () {
-  return redirect('/masuk');
+  return redirect('/login');
 });
 
-// Route::get('/masuk', 'UserController@login');
-Route::get('masuk', 'Auth\LoginController@showLoginForm')->name('masuk');
-Route::post('masuk', 'Auth\LoginController@login');
+Auth::routes();
 
-Route::get('/masuk_otp', 'UserController@login_otp');
-Route::post('/verifikasi_otp', 'UserController@verifikasi_otp');
-Route::post('/masuk', 'UserController@proses_login');
+Route::get('/login', 'UserController@login')->name('login');
+Route::post('/login', 'UserController@proses_login');
+
+Route::get('/masuk_otp', 'UserController@login_otp')->middleware('cek');
+Route::post('/verifikasi_otp', 'UserController@verifikasi_otp')->middleware('cek');
+
 Route::get('/keluar', 'UserController@logout')->middleware('cek');
 
-Route::get('/identitas-sekolah', 'IdentitasSekolahController@index')->middleware('cek');
-Route::get('/tentang-aplikasi', 'TentangAplikasiController@index')->middleware('cek');
+Route::get('/identitas-sekolah', 'IdentitasSekolahController@index')->middleware('cek','cek.otp');
+Route::get('/tentang-aplikasi', 'TentangAplikasiController@index')->middleware('cek','cek.otp');
 
 Route::prefix('siswa')->middleware('cek.siswa')->group(function () {
   Route::get('/', 'SiswaController@index');
@@ -38,7 +39,7 @@ Route::prefix('siswa')->middleware('cek.siswa')->group(function () {
 });
 
 //demo orang tua sama seperti siswa
-Route::prefix('ortu')->middleware('cek')->group(function () {
+Route::prefix('orang-tua')->middleware('cek')->group(function () {
   Route::get('/', 'SiswaController@index');
   Route::get('/tagihan', 'TagihanSiswaController@index');
   Route::post('/pembayaran_tagihan', 'TagihanSiswaController@bayar_tagihan');
@@ -47,7 +48,7 @@ Route::prefix('ortu')->middleware('cek')->group(function () {
   Route::get('/akun', 'SiswaController@akun');
 });
 
-Route::prefix('admin')->middleware('cek.admin')->group(function () {
+Route::prefix('admin')->middleware('cek.admin','cek.otp')->group(function () {
   Route::get('/', 'Admin\AdminController@index');
 
   Route::resources([
@@ -68,7 +69,3 @@ Route::prefix('admin')->middleware('cek.admin')->group(function () {
   Route::get('/tagihan/tambah', 'Admin\TagihanController@tambah')->middleware('cek');
   Route::get('/pembayaran', 'Admin\PembayaranController@index')->middleware('cek');
 });
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();

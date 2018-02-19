@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'cek' => \App\Http\Middleware\CheckSession::class,
         'cek.siswa' => \App\Http\Middleware\CheckSiswa::class,
         'cek.admin' => \App\Http\Middleware\CheckAdmin::class,
+        'cek.otp' => \App\Http\Middleware\CheckOtp::class,
     ];
 }

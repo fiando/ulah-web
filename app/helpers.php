@@ -64,7 +64,7 @@ function get_otp($no_telp, $digit = 4,$expire = 180, $key = 'key123') {
     echo "cURL Error #:" . $err;
   } else {
     $j = json_decode($response);
-    echo $response;
+    // echo $response;
     if (isset($j->status)) {
       return $j->status;
     }
@@ -107,7 +107,7 @@ function verifikasi_otp($optstr, $digit = 4,$expire = 180) {
     echo "cURL Error #:" . $err;
   } else {
     $j = json_decode($response);
-    echo $response;
+    // echo $response;
     if (isset($j->status)) {
       return $j->status;
     }

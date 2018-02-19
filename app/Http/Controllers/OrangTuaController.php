@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class SiswaController extends Controller
+class OrangTuaController extends Controller
 {
     public function index()
     {
@@ -49,7 +49,7 @@ class SiswaController extends Controller
       $pembayaran_count = $pembayaran->count();
       $total_transaksi = $pembayaran->sum('nominal');
 
-      return view('siswa/dashboard', [
+      return view('orang-tua/dashboard', [
         'pembayaran_count' => $pembayaran_count,
         'total_transaksi' => $total_transaksi,
         'tagihan' => $tagihan,

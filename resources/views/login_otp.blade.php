@@ -5,9 +5,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="{{url("img/logo.png")}}"/>
-	<link rel="stylesheet" type="text/css" href="{{url("/login/vendor/bootstrap/css/bootstrap.min.css")}}">
-	<link rel="stylesheet" type="text/css" href="{{url("/login/css/util.css")}}">
-	<link rel="stylesheet" type="text/css" href="{{url("/login/css/main.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{url("/login_assets/vendor/bootstrap/css/bootstrap.min.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{url("/login_assets/css/util.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{url("/login_assets/css/main.css")}}">
 	<style media="screen">
 		.input100.disabled {
 			background: #b9b9b9 !important;

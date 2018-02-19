@@ -68,6 +68,7 @@ class TagihanSiswaController extends Controller
     $tgl = date('d-m-Y');
     $pesan = "$nama, \nPembayaran \"$nama_pembayaran\" sebesar Rp.$nominal_format dilakukan pada $tgl \nTanggal tagihan : $tgl_tagihan";
     $cart_id = "cart" . $request->id_tagihan;
+    $token = get_token();
 
     curl_setopt_array($curl, array(
       CURLOPT_URL => "https://api.mainapi.net/finpay/2.0.0/transactions",
@@ -79,7 +80,7 @@ class TagihanSiswaController extends Controller
       CURLOPT_CUSTOMREQUEST => "POST",
       CURLOPT_POSTFIELDS => "ivp_method=create&ivp_store=19509&ivp_authkey=nkDCS-WLZg%5EXkzTB&ivp_amount=$nominal&ivp_currency=idr&ivp_test=0&ivp_cart=$cart_id&ivp_desc=$nama_pembayaran&return_auth=https%3A%2F%2Fmainapi.net%2Fauth.html&return_decl=https%3A%2F%2Fmainapi.net%2Fdecl.html&return_can=https%3A%2F%2Fmainapi.net%2Fcan.html",
       CURLOPT_HTTPHEADER => array(
-        "Authorization: Bearer 4511ea753d09c092bcf35cda33ab6bf4",
+        "Authorization: Bearer $token",
         "Cache-Control: no-cache",
         "Content-Type: application/x-www-form-urlencoded",
         "Postman-Token: f7f20e1d-ad18-fb87-45cc-e03fd03490d2"

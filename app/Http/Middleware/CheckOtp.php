@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class CheckOtp
 {
@@ -16,8 +17,7 @@ class CheckOtp
      */
     public function handle($request, Closure $next)
     {
-      $user = \App\User::where('status','aktif')->find(session('id'));
-      // dd($user->otp);
+      $user = \App\User::where('status','aktif')->find(Auth::id());
       $otp = $user->otp;
       if ($otp == 1) {
         $otp_valid = $request->session()->get('otp_valid');

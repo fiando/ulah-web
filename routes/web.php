@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-  return redirect('/login');
-});
+Route::get('/', 'LandingController@index')->name('landing');
 
 Auth::routes();
 
@@ -35,7 +33,9 @@ Route::middleware(['cek','cek.otp'])->group(function () {
   Route::get('/dashboard', 'AkunController@index');
   Route::get('/tagihan', 'TagihanSiswaController@index');
   Route::get('/pembayaran_tagihan', 'TagihanSiswaController@bayar_tagihan');
+  Route::get('/pembayaran_tagihan/cek', 'TagihanSiswaController@cek_transaksi');
   Route::post('/pembayaran_tagihan/finpay', 'TagihanSiswaController@bayar_finpay');
+  Route::post('refresh_tagihan', 'TagihanSiswaController@refresh_tagihan');
   Route::get('/pembayaran', 'PembayaranSiswaController@index');
   Route::get('/siswa', 'OrangTuaSiswaController@index');
   Route::get('/orang-tua', 'OrangTuaSiswaController@index');

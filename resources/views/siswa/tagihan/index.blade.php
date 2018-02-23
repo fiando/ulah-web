@@ -17,7 +17,16 @@
               <br>
               Nominal : Rp{{number_format($v->nominal,0,0,'.')}}<br />
               @if ($siswa->akses_pembayaran or session('level') == 'orang_tua')
-                <a href="{{url('pembayaran_tagihan/')}}?id_tagihan={{$v->idpembayaran}}" class="btn btn-primary btn-fill btn-sm" target="_blank">Bayar</a>
+                @if (isset($v->ref))
+                  <form class="" action="{{url("refresh_tagihan")}}" method="post">
+                    <a href="{{url('pembayaran_tagihan/cek')}}?id_tagihan={{$v->idpembayaran}}" class="btn btn-info btn-fill btn-sm">Periksa</a>
+                    <button type="submit" name="notif" class="btn btn-sm btn-success btn-fill">Refresh</button><br>
+                    <input type="hidden" name="id_tagihan" value="{{$v->idpembayaran}}">
+                    {{ csrf_field() }}
+                  </form>
+                  @else
+                  <a href="{{url('pembayaran_tagihan/')}}?id_tagihan={{$v->idpembayaran}}" class="btn btn-primary btn-fill btn-sm" target="_blank">Bayar</a>
+                @endif
               @endif
             </li>
           @endforeach
@@ -26,10 +35,10 @@
           <h4>Total Tagihan : <small>Rp{{number_format($total_transaksi,0,0,'.')}} ( {{$tagihan_count}} Tagihan )</small></h4>
           {{-- <button type="button" disabled class="btn btn-primary btn-block btn-fill disabled">BAYAR SEMUA</button> --}}
         </div>
-        <form class="" action="{{url("refresh_tagihan")}}" method="post">
+        {{-- <form class="" action="{{url("refresh_tagihan")}}" method="post">
           <button type="submit" name="notif" class="btn btn-block btn-success btn-fill">Refresh</button><br>
           {{ csrf_field() }}
-        </form>
+        </form> --}}
       </div>
     </div>
 </div>

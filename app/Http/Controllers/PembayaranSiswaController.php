@@ -16,7 +16,7 @@ class PembayaranSiswaController extends Controller
                 ->select('pembayaran.*', 'jenis_pembayaran.nama_pembayaran', 'jenis_pembayaran.nominal', 'tahun_pelajaran.tahun_pelajaran')
                 ->where([
                   ['pembayaran.status', '=', 'lunas'],
-                  ['siswa.nis', '=', session('id')],
+                  ['siswa.nis', '=', session('nis')],
                 ])
                 ->get();
 

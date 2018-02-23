@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{url("/siswa")}}">Dashboard Siswa</a>
+      <a class="navbar-brand" href="{{url("/siswa")}}">Dashboard</a>
     </div>
     <div class="collapse navbar-collapse">
 
@@ -25,10 +25,15 @@
             </p>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="{{url("siswa/")}}">Menu Utama</a></li>
-            <li><a href="{{url("siswa/tagihan")}}">Tagihan</a></li>
-            <li><a href="{{url("siswa/pembayaran")}}">Pembayaran</a></li>
-            <li><a href="{{url("siswa/orang-tua")}}">Profil Orang Tua</a></li>
+            <li><a href="{{url("dashboard")}}">Menu Utama</a></li>
+            <li><a href="{{url("tagihan")}}">Tagihan</a></li>
+            <li><a href="{{url("pembayaran")}}">Pembayaran</a></li>
+            @if (session('level') == 'siswa')
+              <li><a href="{{url("orang-tua")}}">Profil Orang Tua</a></li>
+            @else
+              <li><a href="{{url("siswa")}}">Profil Siswa</a></li>
+            @endif
+
             <li class="divider"></li>
             <li><a href="{{url("tentang-aplikasi")}}">Tentang Aplikasi</a></li>
           </ul>

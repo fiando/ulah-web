@@ -15,14 +15,14 @@
               <div class="row">
                 <div class="col-md-5">
                   <div class="form-group">
-                    <label>Username ( NIS )</label>
-                    <input type="text" class="form-control" disabled placeholder="NIS" value="{{$siswa->username}}">
+                    <label>Username</label>
+                    <input type="text" class="form-control" disabled placeholder="NIS" value="{{$akun->username}}">
                   </div>
                 </div>
                 <div class="col-md-7">
                   <div class="form-group">
                     <label>Email</label>
-                    <input type="text" class="form-control" placeholder="Email" value="{{$siswa->email}}">
+                    <input type="text" class="form-control" placeholder="Email" value="{{$akun->email}}">
                   </div>
                 </div>
               </div>
@@ -31,13 +31,13 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nama</label>
-                    <input type="text" class="form-control" placeholder="Nama" value="{{$siswa->nama}}">
+                    <input type="text" class="form-control" placeholder="Nama" value="{{$akun->nama}}">
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
                     <label>No Telp</label>
-                    <input type="text" class="form-control" placeholder="No Telp" value="{{$siswa->no_telp}}">
+                    <input type="text" class="form-control" placeholder="No Telp" value="{{$akun->no_telp}}">
                   </div>
                 </div>
               </div>
@@ -46,7 +46,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label>Alamat</label>
-                    <input type="text" class="form-control" placeholder="Alamat" value="{{$siswa->alamat}}">
+                    <input type="text" class="form-control" placeholder="Alamat" value="{{$akun->alamat}}">
                   </div>
                 </div>
               </div>
@@ -54,13 +54,13 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Nama Bank</label>
-                    <input type="text" class="form-control" placeholder="Nama Bank" value="{{$siswa->nama_bank}}">
+                    <input type="text" class="form-control" placeholder="Nama Bank" value="{{$akun->nama_bank}}">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>No Rekening</label>
-                    <input type="text" class="form-control" placeholder="No Rekening" value="{{$siswa->no_rekening}}">
+                    <input type="text" class="form-control" placeholder="No Rekening" value="{{$akun->no_rekening}}">
                   </div>
                 </div>
               </div>
@@ -73,15 +73,15 @@
       <div class="col-md-4">
         <div class="card">
           <div cass="content">
-            <div class="author text-center">
-                <h4 class="title">{{$siswa->nama}}
+            <div class="author text-center"><br>
+                <h4 class="title">{{$akun->nama}}
                 <br />
-                  <small>{{$siswa->username}} ( {{$siswa->username}} )</small>
+                  <small>{{$akun->username}}</small>
                 </h4>
             </div>
             <p class="text-center">
-              {{$siswa->email}} <br>
-              {{$siswa->no_telp}}
+              {{$akun->email}} <br>
+              {{$akun->no_telp}}
             </p>
           </div>
           <hr>

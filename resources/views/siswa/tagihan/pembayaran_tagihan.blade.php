@@ -14,12 +14,17 @@
             <h4>Nominal : <b>Rp{{number_format($tagihan->nominal,0,0,'.')}}</b></h4>
             <hr>
             <h4>Metode Pembayaran</h4>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="thumbnail">
-                  <img class="img-responsive" src="{{asset('img/finpay.jpg')}}" alt="...">
-                  <div class="caption">
-                    <form action="{{url('siswa/pembayaran_tagihan/finpaycc')}}" method="post">
+            <form action="{{url('pembayaran_tagihan/finpay')}}" method="post">
+              <select class="form-control" name="metode_bayar">
+                <option value="trf">Transfer</option>
+                <option value="cc">Credit Card</option>
+              </select>
+              <br>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="thumbnail">
+                    <img class="img-responsive" src="{{asset('img/finpay.jpg')}}" alt="...">
+                    <div class="caption">
                       <input type="hidden" name="id_tagihan" value="{{$tagihan->idpembayaran}}">
                       <input type="hidden" name="nama" value="{{$tagihan->nama}}">
                       <input type="hidden" name="nis" value="{{$tagihan->nis}}">

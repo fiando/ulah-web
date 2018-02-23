@@ -14,7 +14,7 @@ class UserController extends Controller
   }
 
   public function login_otp() {
-    $user = \App\User::where('status','aktif')->find(session('id'));
+    $user = \App\User::where('status','aktif')->find(Auth::id());
     get_otp($user->no_telp);
     return view('login_otp');
   }
@@ -28,27 +28,20 @@ class UserController extends Controller
     return view('login_otp');
   }
 
-  public function proses_demo_login(Request $request) {
-    //simulasi demo login
-    $request->session()->put('level', $request->level);
-    $level = session('level');
+  public function toggle_otp(Request $request) {
+    $user = \App\User::find(Auth::id());
+    $user->otp = !$user->otp;
+    $user->save();
+    $session = session('otp_valid');
+    $request->session()->put('otp_valid', !$session);
+    // dd(session('otp_valid'));
 
-    if ($level == 'admin') {
-      $request->session()->put('id', '42'); //simulasi demo admin
-      return redirect('admin');
-    }
-    elseif($level == 'siswa') {
-      $request->session()->put('id', '7017'); //simulasi demo siswa
-      return redirect('siswa');
-    }
+    return redirect('dashboard');
   }
 
   public function proses_login(Request $request) {
     $email = $request->email;
     $password = $request->pass;
-
-    // $email = 'admin2@ulah.id';
-    // $password = 'ulah';
 
     $login = Auth::attempt(['email' => $email, 'password' => $password, 'status' => 'aktif']);
 
@@ -71,20 +64,13 @@ class UserController extends Controller
                     ->first();
 
         $request->session()->put('nis', $nis->nis);
-        return redirect('siswa');
+        return redirect('dashboard');
       }
       elseif($level == 'orang_tua') {
-        $nis = DB::table('orang_tua')
-                    ->join('users','siswa.idusers','=','users.idusers')
-                    ->select('siswa.nis')
-                    ->where('siswa.nis','=', Auth::user()->username)
-                    ->first();
-
-        $request->session()->put('nis', $nis->nis);
-
+        $request->session()->put('iduser', Auth::id());
         $request->session()->put('id', Auth::user()->username);
 
-        return redirect('orang-tua');
+        return redirect('pilih_siswa');
       }
     }
     else {

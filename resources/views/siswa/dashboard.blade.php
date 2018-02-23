@@ -24,7 +24,7 @@
               </li>
             @endforeach
           </ul>
-          <a href="{{url("siswa/tagihan")}}" class="btn btn-primary btn-block">Periksa Semua Tagihan</a>
+          <a href="{{url("tagihan")}}" class="btn btn-primary btn-block">Periksa Semua Tagihan</a>
         </div>
       </div>
       <div class="card">
@@ -36,35 +36,16 @@
           <p>Rp{{number_format($total_transaksi,0,'','.')}}</p>
           <h5><b>Banyaknya Transaksi</b></h5>
           <p>{{$pembayaran_count}} Kali</p>
-          <a href="{{url("siswa/pembayaran")}}" class="btn btn-primary btn-block">Lihat Semua Pembayaran</a>
+          <a href="{{url("pembayaran")}}" class="btn btn-primary btn-block">Lihat Semua Pembayaran</a>
         </div>
       </div>
     </div>
     <div class="col-md-6">
-      <div class="card">
-        <div class="header">
-          <h4 class="title">Profil Siswa</h4>
-        </div>
-        <div class="content">
-          <dl class="dl-horizontal">
-            <dt>Nama :</dt>
-            <dd>{{$siswa->nama}}</dd>
-            <dt>Alamat :</dt>
-            <dd>{{$siswa->alamat}}</dd>
-            <dt>No. Telp :</dt>
-            <dd>{{$siswa->no_telp}}</dd>
-            <dt>Email :</dt>
-            <dd>{{$siswa->email}}</dd>
-            <dt>Username :</dt>
-            <dd>{{$siswa->username}}</dd>
-            <dt>Nama Bank :</dt>
-            <dd>{{$siswa->nama_bank}}</dd>
-            <dt>No. Rekening :</dt>
-            <dd>{{$siswa->no_rekening}}</dd>
-          </dl>
-          <a href="{{url("siswa/akun")}}" class="btn btn-primary btn-block">Update Profil</a>
-        </div>
-      </div>
+      @if (session('level') == 'siswa')
+        @include('siswa/partials/profil-siswa')
+      @else
+        @include('siswa/partials/profil-orang-tua')
+      @endif
     </div>
   </div>
 @endsection

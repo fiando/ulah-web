@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/tgl-indo', 'PublicApi@tgl_indo');
+Route::post('/rupiah', 'PublicApi@rupiah');
+Route::post('/total-transaksi', 'PublicApi@total_transaksi');
+Route::get('/daftar-bank/{id}', 'PublicApi@get_bank');
+Route::post('/daftar-bank', 'PublicApi@daftar_bank');

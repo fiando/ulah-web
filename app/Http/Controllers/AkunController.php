@@ -4,17 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Siswa;
+use App\OrangTua;
 
-class SiswaController extends Controller
+class AkunController extends Controller
 {
     public function index()
     {
-
       $siswa = DB::table('siswa')
                   ->join('users','siswa.idusers','=','users.idusers')
                   ->join('bank','users.idbank','=','bank.kode')
-                  ->select('users.*','bank.nama as nama_bank')
+                  ->select('users.*','bank.nama as nama_bank','siswa.idorang_tua')
                   ->where('siswa.nis','=', session('nis'))
+                  ->first();
+      $orang_tua = DB::table('orang_tua')
+                  ->join('users','orang_tua.idusers','=','users.idusers')
+                  ->join('bank','users.idbank','=','bank.kode')
+                  ->select('users.*','bank.nama as nama_bank')
+                  ->where('orang_tua.idorang_tua','=', $siswa->idorang_tua)
                   ->first();
       // dd($siswa);
 
@@ -55,7 +62,8 @@ class SiswaController extends Controller
         'tagihan' => $tagihan,
         'tagihan_count' => $tagihan_count,
         'total_tagihan' => $total_transaksi,
-        'siswa' => $siswa
+        'siswa' => $siswa,
+        'orang_tua' => $orang_tua
       ]);
     }
 
@@ -64,12 +72,36 @@ class SiswaController extends Controller
       $siswa = DB::table('siswa')
                   ->join('users','siswa.idusers','=','users.idusers')
                   ->join('bank','users.idbank','=','bank.kode')
-                  ->select('users.*','bank.nama as nama_bank')
+                  ->select('users.*','bank.nama as nama_bank','siswa.idorang_tua')
                   ->where('siswa.nis','=', session('nis'))
+                  ->first();
+      $orang_tua = DB::table('orang_tua')
+                  ->join('users','orang_tua.idusers','=','users.idusers')
+                  ->join('bank','users.idbank','=','bank.kode')
+                  ->select('users.*','bank.nama as nama_bank')
+                  ->where('orang_tua.idorang_tua','=', $siswa->idorang_tua)
                   ->first();
       // dd($siswa);
       return view('siswa.akun', [
-        'siswa' => $siswa
+        'akun' => (session('level') == 'siswa') ? $siswa : $orang_tua,
       ]);
+    }
+
+    public function pilih_siswa() {
+      $orang_tua = OrangTua::where('idusers', session('iduser'))->first();
+      $siswa_data = Siswa::where('idorang_tua', $orang_tua->idorang_tua)->get();
+      // dd($siswa_data[0]->user);
+      return view('pilih-siswa', [
+        'siswa_data' => $siswa_data
+      ]);
+    }
+
+    public function akses_siswa(Request $request) {
+      $pilih_siswa = $request->pilih_siswa;
+
+      $nis = Siswa::find($pilih_siswa);
+      $request->session()->put('nis', $nis->nis);
+
+      return redirect('dashboard');
     }
 }

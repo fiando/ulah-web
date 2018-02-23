@@ -150,3 +150,31 @@ function get_token() {
     return $j->access_token;
   }
 }
+
+function rupiah($nominal) {
+  $rupiah = "Rp " . number_format($nominal,2,',','.');
+  return $rupiah;
+}
+
+function tgl_indo($tanggal) {
+  $bulan = array (
+    1 =>   'Januari',
+    'Februari',
+    'Maret',
+    'April',
+    'Mei',
+    'Juni',
+    'Juli',
+    'Agustus',
+    'September',
+    'Oktober',
+    'November',
+    'Desember'
+  );
+  $split = explode('-', $tanggal);
+  $format_tanggal = array(
+    'tanggal' => $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0]
+  );
+
+  return $format_tanggal;
+}

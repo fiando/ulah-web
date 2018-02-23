@@ -46,7 +46,7 @@
               </div>
             </div>
           </div>
-          <button type="button" class="disabled btn btn-success btn-fill pull-right">Tambah Tagihan</button>
+          <button type="submit" class="btn btn-success btn-fill pull-right">Tambah Tagihan</button>
           <div class="clearfix"></div>
           {{ csrf_field() }}
         </form>

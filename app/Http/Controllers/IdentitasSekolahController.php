@@ -14,7 +14,7 @@ class IdentitasSekolahController extends Controller
         $view = 'siswa';
       break;
       case 'orang_tua':
-        $view = 'ortu';
+        $view = 'siswa';
       break;
       case 'admin':
         $view = 'admin';

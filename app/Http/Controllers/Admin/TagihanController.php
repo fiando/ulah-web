@@ -17,7 +17,7 @@ class TagihanController extends Controller
     ->join('siswa', 'pembayaran.nis', '=', 'siswa.nis')
     ->join('users', 'siswa.idusers', '=', 'users.idusers')
     ->select('users.*','pembayaran.*', 'jenis_pembayaran.nama_pembayaran', 'jenis_pembayaran.nominal', 'tahun_pelajaran.tahun_pelajaran')
-    ->where('pembayaran.status', 'lunas')
+    ->where('pembayaran.status', 'belum_lunas')
     ->get();
 
     return view('admin/tagihan/index', ['pembayaran' => $pembayaran]);
@@ -40,18 +40,18 @@ class TagihanController extends Controller
 
   public function store(Request $request)
   {
-    $pembayaran = new Pembayaran;
+    $tagihan = new Pembayaran;
 
-    $pembayaran->nis = $request->nis;
-    $pembayaran->tgl_tagihan = $request->tagihan;
-    $pembayaran->idjenis_pembayaran = $request->jenis_pembayaran;
-    $pembayaran->idtahun_pelajaran = $request->tahun_pelajaran;
-    $pembayaran->status = 'belum_lunas';
-    $pembayaran->tgl_bayar = '';
+    $tagihan->nis = $request->nis;
+    $tagihan->tgl_tagihan = date('Y-m-d');
+    $tagihan->idjenis_pembayaran = $request->jenis_pembayaran;
+    $tagihan->idtahun_pelajaran = $request->tahun_pelajaran;
+    $tagihan->status = 'belum_lunas';
+    $tagihan->tgl_bayar = null;
 
-    $pembayaran->save();
+    $tagihan->save();
 
-    return redirect()->route('jenis-pembayaran.create')->with('success','Berhasil Menambahkan Jenis Pembayaran ' . $request->jenis_pembayaran );
+    return redirect()->route('tagihan')->with('success','Berhasil Menambahkan Tagihan' . $request->jenis_pembayaran );
   }
 
   public function notifikasi_tagihan(Request $request) {
@@ -63,8 +63,19 @@ class TagihanController extends Controller
     $tgl_tagihan = $request->tgl_tagihan;
     $nominal = number_format($request->nominal,0,0,'.');
 
-    $no_telp = $request->no_telp;
-    $no_telp = '085743411430';
+    $siswa = DB::table('siswa')->where('nis',$nis)->first();
+    $ortu = DB::table('orang_tua')
+    ->join('siswa', 'orang_tua.idorang_tua', '=', 'siswa.idorang_tua')
+    ->join('users', 'orang_tua.idusers', '=', 'users.idusers')
+    ->select('users.*')
+    ->where([
+      ['orang_tua.idorang_tua', "=" ,$siswa->idorang_tua],
+    ])
+    ->first();
+
+    $no_telp = $request->nomor;
+    $no_telp_ortu = $request->nomor;
+    // $no_telp = '085743411430';
     $pesan = "Nama siswa : $nama ( $nis ) \n\nAda Tagihan \"$nama_pembayaran\" sebesar Rp.$nominal yang belum terbayar, silahkan periksa tagihan.\n\nTanggal tagihan : $tgl_tagihan\n";
     $sms_token = get_token();
 
@@ -84,7 +95,11 @@ class TagihanController extends Controller
         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
       ),
     ));
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
 
+    //kirim orang-tua
+    $no_telp = $no_telp_ortu;
     $response = curl_exec($curl);
     $err = curl_error($curl);
 
@@ -96,7 +111,12 @@ class TagihanController extends Controller
       return redirect('admin/tagihan/');
     } else {
       // echo $response;
-      $request->session()->flash('pesan_flash', $response);
+      $response_msg = 'Mengirim pesan';
+      $response_json = json_decode($response);
+      if(isset($response_json->message)) {
+        $response_msg = $response_json->message;
+      }
+      $request->session()->flash('pesan_flash', $response_msg);
       return redirect('admin/tagihan/');
     }
   }

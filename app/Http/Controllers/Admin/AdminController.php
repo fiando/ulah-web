@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\IdentitasSekolah;
+use App\Http\Controllers\PublicApi as PublicApi;
 
 class AdminController extends Controller
 {
   public function index()
   {
+    $api = new PublicApi();
     $sekolah = IdentitasSekolah::where('ididentitas_sekolah', 1)->first();
     $tagihan = DB::table('pembayaran')
                 ->join('jenis_pembayaran','pembayaran.idjenis_pembayaran','=','jenis_pembayaran.idjenis_pembayaran')

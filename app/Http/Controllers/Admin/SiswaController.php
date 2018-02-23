@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\User;
 use Illuminate\Http\Request;
+use App\User;
+use App\Kategori;
+use App\Tingkat;
+use App\OrangTua;
 
 class SiswaController extends Controller
 {
@@ -15,8 +18,9 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $user = User::where('level', '=', 'siswa')->orderBy('idusers', 'desc')->get();
-        return view('admin.user.index-siswa',compact('user'));
+        $siswa = User::where('level', '=', 'siswa')->orderBy('idusers', 'desc')->get();
+
+        return view('admin.siswa.index',compact('siswa'));
     }
 
     /**
@@ -26,7 +30,15 @@ class SiswaController extends Controller
      */
     public function create()
     {
-      return view('admin.user.create', []);
+      $kategori = Kategori::get();
+      $tingkat = Tingkat::get();
+      $orang_tua = OrangTua::get();
+
+      return view('admin.siswa.create', [
+        'kategori' => $kategori,
+        'tingkat' => $tingkat,
+        'orang_tua' => $orang_tua,
+      ]);
     }
 
     /**
@@ -37,8 +49,9 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
+      dd($request);
       $this->validate($request, [
-          'nama' => 'required',
+          'username_siswa' => 'required',
       ]);
 
       $user = new User;

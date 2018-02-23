@@ -22,13 +22,15 @@ class PublicApi extends Controller
 
   }
 
-  public function get_bank(Request $request)
+  public function daftar_bank()
   {
-
+    return json_encode(daftar_bank());
   }
 
-  public function daftar_bank(Request $request)
+  public function get_bank(Request $request)
   {
+    $id = $request->id;
+    return json_encode(get_bank($id));
   }
 
 }

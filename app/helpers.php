@@ -178,3 +178,13 @@ function tgl_indo($tanggal) {
 
   return $format_tanggal;
 }
+
+function daftar_bank() {
+  $daftar_bank = DB::table('bank')->get();
+  return $daftar_bank;
+}
+
+function get_bank($id) {
+  $bank = DB::table('bank')->where('kode', $id)->first();
+  return $bank;
+}

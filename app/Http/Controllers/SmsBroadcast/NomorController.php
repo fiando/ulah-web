@@ -28,7 +28,7 @@ class NomorController extends Controller
     $nomor = new Nomor;
     $nomor->idkategori = $request->idkategori;
     $nomor->idunik = $idunik;
-    $nomor->nomor = $nomor;
+    $nomor->nomor = $request->nomor;
     $nomor->save();
 
     return json_encode($nomor);
@@ -43,38 +43,31 @@ class NomorController extends Controller
     $nomor = Nomor::where([
       'idunik' => $idunik,
       'idnomor' => $idnomor
-      ])->get();
+      ])->first();
 
-      // return json_encode(array(
-      //   'nomor' => $nomor
-      // ));
+      return json_encode($nomor);
   }
 
   public function update(Request $request)
   {
     $akses = $request->akses;
     $idnomor = $request->idnomor;
-    // $akses = 'c81e728d9d4c2f636f067f89cc14862c';
     $idunik = Unik::where('akses', $akses)->first()->idunik;
 
-    $nomor = Nomor::find([
+    $data_nomor = Nomor::where('idunik', $idunik)
+          ->where('idnomor', $idnomor)
+          ->update(['nomor' =>  $request->nomor]);
+    return json_encode(array(
       'idunik' => $idunik,
-      'idnomor' => $idnomor
-      ])->first();
-
-    $nomor->nomor = $request->nomor;
-    $nomor->save();
-
-      return json_encode(array(
-        'nomor' => $nomor
-      ));
+      'idnomor' => $idnomor,
+      'nomor' => $request->nomor
+    ));
   }
 
-  public function destroy($id)
+  public function destroy($id, Request $request)
   {
     $akses = $request->akses;
-    $idnomor = $request->idnomor;
-    // $akses = 'c81e728d9d4c2f636f067f89cc14862c';
+    $idnomor = $id;
     $idunik = Unik::where('akses', $akses)->first()->idunik;
 
     $nomor = Nomor::where([

@@ -17,9 +17,7 @@ class KategoriController extends Controller
         $kategori = Kategori::where([
           'idunik' => $idunik
         ])->get();
-        return json_encode(array(
-          'kategori' => $kategori,
-        ));
+        return json_encode($kategori);
       }
 
     public function store(Request $request)
@@ -69,9 +67,7 @@ class KategoriController extends Controller
       $kategori->nama = $request->nama;
       $kategori->save();
 
-        return json_encode(array(
-          'kategori' => $kategori
-        ));
+        return json_encode($kategori);
     }
 
     public function destroy($id, Request $request)

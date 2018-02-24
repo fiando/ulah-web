@@ -70,5 +70,4 @@ Route::prefix('admin')->middleware('cek.admin','cek.otp')->group(function () {
     Route::post('/kirim-notif', 'Admin\TagihanController@notifikasi_tagihan')->middleware('cek');
   });
 
-
 });

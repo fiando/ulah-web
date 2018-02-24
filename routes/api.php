@@ -22,3 +22,11 @@ Route::post('/rupiah', 'PublicApi@rupiah');
 Route::post('/total-transaksi', 'PublicApi@total_transaksi');
 Route::get('/daftar-bank', 'PublicApi@daftar_bank');
 Route::get('/get-bank/{id}', 'PublicApi@get_bank');
+
+Route::prefix('bcm')->group(function () {
+  Route::get('/unik', 'SmsBroadcast\UnikController@index');
+  Route::resource('/kategori', 'SmsBroadcast\KategoriController');
+  Route::resource('/nomor', 'SmsBroadcast\NomorController');
+  Route::get('histori-pesan', 'SmsBroadcast\HistoriPesanController@index');
+  Route::post('broadcast', 'SmsBroadcast\BroadcastController@index');
+});

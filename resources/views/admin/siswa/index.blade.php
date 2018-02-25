@@ -33,9 +33,9 @@
                 <td>{{user_status($value['status'])}}</td>
                 <td width="20%">
                   <form class="" action="{{url("admin/siswa/{$value['idusers']}")}}" method="post">
-                  <a class="btn btn-sm btn-fill btn-primary" href="{{url("admin/siswa/{$value['idusers']}")}}">View</a>
-                  <a class="btn btn-sm btn-fill btn-info" href="{{url("admin/siswa/{$value['idusers']}/edit")}}">Edit</a>
-                    <button class="btn btn-sm btn-fill btn-danger" type="submit" name="delete" onClick="return confirm('Anda yakin ingin menghapus ?')">Delete</button>
+                  <a class="disabled btn btn-sm btn-fill btn-primary" href="{{url("admin/siswa/{$value['idusers']}")}}">View</a>
+                  <a class="disabled btn btn-sm btn-fill btn-info" href="{{url("admin/siswa/{$value['idusers']}/edit")}}">Edit</a>
+                    <button class="disabled btn btn-sm btn-fill btn-danger" type="submit" name="delete" onClick="#">Delete</button>
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
                   </form>

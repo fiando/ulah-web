@@ -23,6 +23,8 @@ Route::post('/total-transaksi', 'PublicApi@total_transaksi');
 Route::get('/daftar-bank', 'PublicApi@daftar_bank');
 Route::get('/get-bank/{id}', 'PublicApi@get_bank');
 
+// demo broadcast message
+
 Route::prefix('bcm')->group(function () {
   Route::get('/unik', 'SmsBroadcast\UnikController@index');
   Route::resource('/kategori', 'SmsBroadcast\KategoriController');

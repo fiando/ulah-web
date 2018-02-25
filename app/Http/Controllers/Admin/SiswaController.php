@@ -49,7 +49,6 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-      dd($request);
       $this->validate($request, [
           'username_siswa' => 'required',
       ]);
@@ -65,7 +64,7 @@ class SiswaController extends Controller
       $user->idbank = $request->idbank;
       $user->no_rekening = $request->no_rekening;
       $user->status = $request->status;
-      $user->level = 'admin';
+      $user->level = 'siswa';
 
       $user->save();
 

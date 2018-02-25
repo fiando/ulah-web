@@ -214,7 +214,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-block btn-success btn-fill">Tambah Siswa</button>
+        <button type="button" class="disabled btn btn-block btn-success btn-fill">Tambah Siswa</button>
         <div class="clearfix"></div>
         {{ csrf_field() }}
       </div>

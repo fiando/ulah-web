@@ -19,7 +19,6 @@ class PublicApi extends Controller
     $nominal = $request->nominal;
 
   	return json_encode(array('rupiah' => rupiah($nominal)));
-
   }
 
   public function daftar_bank()

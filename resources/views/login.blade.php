@@ -40,7 +40,7 @@
 					</div>
 
 					<div class="wrap-input100 rs1 validate-input">
-						<input class="input100" type="password" name="pass" placeholder="Password" value="demo">
+						<input class="input100" type="password" name="pass" placeholder="Password" value="">
 					</div>
 
 					<div class="container-login100-form-btn m-t-20">

@@ -88,6 +88,10 @@ class AkunController extends Controller
     }
 
     public function pilih_siswa() {
+      if(session('nis')) {
+        return redirect('dashboard');
+      }
+
       $orang_tua = OrangTua::where('idusers', session('iduser'))->first();
       $siswa_data = Siswa::where('idorang_tua', $orang_tua->idorang_tua)->get();
       // dd($siswa_data[0]->user);

@@ -23,7 +23,16 @@ class UserController extends Controller
     $verifikasi = verifikasi_otp($request->otpstr);
     if ($verifikasi) {
       $request->session()->put('otp_valid', true);
-      return redirect(url(session('level')));
+      $level = session('level');
+      if ($level == 'admin') {
+        return redirect('admin');
+      }
+      elseif ($level == 'siswa') {
+        return redirect('dashboard');
+      }
+      elseif ($level == 'orang_tua') {
+        return redirect('pilih_siswa');
+      }
     }
     return view('login_otp');
   }

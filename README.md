@@ -17,20 +17,24 @@ Dengan proses yang berbelit dan berputar-putar, penuh pengulangan yang menjemuka
 Target utama kami adalah memperkenalkan kemudahan **financial technology**, yang dirasa masih jarang digunakan masyarakat luas bahkan dikota besar yang maju sekalipun.
 
 **Demo Akun :**
-**-- Admin**
+**Admin**
 User : admin@ulah.id
+
 Password : ulah
 
 **Demo OTP ( Admin2 )**
 User : admin2@ulah.id
+
 Password : ulah
 
-**-- Siswa**
+**- Siswa**
 User : adiarja17@gmail.com
+
 Password : password
 
-**-- Orang Tua**
+**- Orang Tua**
 User : yoga17@gmail.com
+
 Password : password
 
 **Cara Instalasi :**

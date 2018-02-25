@@ -7,13 +7,16 @@
 
 **Video Tutorial Demo Penggunaan Ulah** ada di [s.id/ulahTutorial](http://s.id/ulahTutorial "s.id/ulahTutorial")
 
+**Presentasi Ulah** ada di [s.id/ulahPresentasi](http://s.id/ulahPresentasi "s.id/ulahPresentasi")
 ------------
 
-Ulah, lahir dari sebuah fenomena janggal yang masih ada pada masa digital massive sekarang ini. Masa dimana teknologi mendominasi kehidupan masyarakat modern.
+Ulah, lahir dari sebuah fenomena janggal yang masih ada pada masa digital massive sekarang ini. 
 
-Dengan proses yang berbelit dan berputar-putar, penuh pengulangan yang menjemukan tentu dapat terjadi human error, saat meng-input data pembayaran dan tentunya mengganggu perputaran uang suatu sekolah.
+Masa dimana teknologi mendominasi kehidupan masyarakat modern.
 
-> Kami yakin dengan solusi yang ditawarkan uLAH (Uang Sekolah) ini dapat meminimalisir human error pada sektor keuangan sekolah. Pastinya juga akan sangat meng-efisienkan tenaga pengurus keuangan dan akses data keuangan yang mudah serta aman.
+Pembayaran konvensional yang terasa sangat berbelit, membosankan, resiko human error yang tinggi (karena psikologi manusia) saat meng-input data pembayaran dan tentunya mengganggu perputaran uang suatu sekolah.
+
+> Dengan adanya masaslah yang ada maka kami terinspirasi membuat aplikasi uLAH (Uang Sekolah) ini dapat meminimalisir human error pada sektor keuangan sekolah. Pastinya juga akan sangat meng-efisienkan tenaga pengurus keuangan dan akses data keuangan yang mudah serta aman.
 
 Target utama kami adalah memperkenalkan kemudahan **financial technology**, yang dirasa masih jarang digunakan masyarakat luas bahkan dikota besar yang maju sekalipun.
 

@@ -7,6 +7,7 @@
 
 **Video Tutorial Demo Penggunaan Ulah** ada di [s.id/ulahTutorial](http://s.id/ulahTutorial "s.id/ulahTutorial")
 
+------------
 
 Ulah, lahir dari sebuah fenomena janggal yang masih ada pada masa digital massive sekarang ini. Masa dimana teknologi mendominasi kehidupan masyarakat modern.
 
@@ -16,7 +17,9 @@ Dengan proses yang berbelit dan berputar-putar, penuh pengulangan yang menjemuka
 
 Target utama kami adalah memperkenalkan kemudahan **financial technology**, yang dirasa masih jarang digunakan masyarakat luas bahkan dikota besar yang maju sekalipun.
 
-**Demo Akun :**
+------------
+
+##  **Demo Akun :**
 **Admin**
 
 User : admin@ulah.id
@@ -41,7 +44,7 @@ User : yoga17@gmail.com
 
 Password : password
 
-**Cara Instalasi :**
+## **Cara Instalasi :**
 
  - Download https://github.com/fiando/ulah-web
  - Install Laravel & Composer

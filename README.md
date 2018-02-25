@@ -18,21 +18,25 @@ Target utama kami adalah memperkenalkan kemudahan **financial technology**, yang
 
 **Demo Akun :**
 **Admin**
+
 User : admin@ulah.id
 
 Password : ulah
 
 **Demo OTP ( Admin2 )**
+
 User : admin2@ulah.id
 
 Password : ulah
 
-**- Siswa**
+**Siswa**
+
 User : adiarja17@gmail.com
 
 Password : password
 
-**- Orang Tua**
+**Orang Tua**
+
 User : yoga17@gmail.com
 
 Password : password
